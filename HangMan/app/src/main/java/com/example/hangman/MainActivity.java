@@ -134,4 +134,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void reset(View view){
+        Intent i = new Intent(this, StartActivity.class);
+        startActivity(i);
+    }
 }
