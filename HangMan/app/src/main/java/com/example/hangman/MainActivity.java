@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("My word is: ", "Word size is: " + wordSize);
         drawing = (ImageView) findViewById(R.id.drawing);
         text = (TextView) findViewById(R.id.wordText);
-        textUsed = (TextView) findViewById(R.id.lettersUsed);
+        textUsed = (TextView) findViewById(R.id.wordText);
         word = dict.getRandomWord(wordSize);
         String buffer = "";
         for(int i = 0; i < wordSize; i++)
