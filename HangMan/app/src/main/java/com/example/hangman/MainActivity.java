@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Set <String> lettersFound = new HashSet<String>();
     private Set <String> lettersUsed = new HashSet<String>();
     private Queue<Integer> drawings = new LinkedList<Integer>();
+    private boolean isPlaying = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     {
 
         int charValue = (keyCode - 29) + 97;
-        if(charValue >= 65 && charValue <= 122)
+        if(charValue >= 65 && charValue <= 122 && isPlaying)
         {
             char character = (char) charValue;
             String value = String.valueOf(character);
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 lettersUsed.add(letter);
             }
             text.setText(buffer);
-
+            checkEndGame(buffer);
         }
 
         else
@@ -134,6 +135,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
 
     }
+
+    public void checkEndGame(String buffer){
+        if(drawings.peek() == null){
+            text.setText(word);
+            textUsed.setText("YOU LOSE!");
+            isPlaying = false;
+        }
+        else if(word.equals(buffer)){
+            isPlaying = false;
+            textUsed.setText("YOU WIN!!!");
+        }
+    }
+
 
     public void reset(View view){
         Intent i = new Intent(this, StartActivity.class);
