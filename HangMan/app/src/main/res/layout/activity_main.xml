@@ -21,11 +21,24 @@
 
     <TextView
         android:text="_  _  _  _  _  _  _  _  _  _  _  _  _  _  _ "
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/wordText"
-        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:layout_marginBottom="81dp"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text=""
+        android:ems="10"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
+        android:id="@+id/lettersUsed" />
 
 </RelativeLayout>

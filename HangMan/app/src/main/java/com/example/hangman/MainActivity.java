@@ -4,6 +4,8 @@ import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,7 +16,7 @@ import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
     ImageView drawing;
-    TextView text;
+    TextView text, textUsed;
     private dictionary dict;
     private ArrayList<String> words;
     private String word;
@@ -33,10 +35,15 @@ public class MainActivity extends AppCompatActivity {
         }
         drawing = (ImageView) findViewById(R.id.drawing);
         text = (TextView) findViewById(R.id.wordText);
-
+        textUsed = (TextView) findViewById(R.id.lettersUsed);
         Integer wordLength = 5;
         word = dict.getRandomWord(wordLength);
-        text.setText(word);
+        String buffer = "";
+        for(int i = 0; i < wordLength; i++)
+        {
+            buffer += "- ";
+        }
+        //text.setText(word);
         Log.d("My word is: ", word);
 
         /*
@@ -56,6 +63,41 @@ public class MainActivity extends AppCompatActivity {
         Log.d("This", "This " + R.drawable.drawing_0);
         */
         drawing.setImageResource(R.drawable.drawing_0);
+
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event)
+    {
+        String buffer = " ";
+        Log.i("jfkrsj", "Value " + keyCode);
+        int charValue = (keyCode - 29) + 97;
+        if(charValue >= 65 && charValue <= 122)
+        {
+            textUsed.setText(" ");
+            char character = (char) charValue;
+            Log.i("Value", "Character " + character);
+            String value = String.valueOf(character);
+            textUsed.setText(value);
+            for(int i = 0; i < word.length(); i++)
+            {
+                if(word.charAt(i) == character)
+                {
+                    buffer += character;
+                }
+                else
+                {
+                    buffer += "- ";
+                }
+            }
+            Log.d("Wornfdfkjnafnfakjnjanf", "Character " + character);
+            text.setText(buffer);
+        }
+        else
+        {
+            return super.onKeyUp(keyCode, event);
+        }
+        return true;
 
     }
 }
