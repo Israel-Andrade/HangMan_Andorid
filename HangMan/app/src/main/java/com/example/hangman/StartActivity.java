@@ -27,11 +27,13 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    public void START(View view){
+    public void START(View view)
+    {
         Intent i = new Intent(this, MainActivity.class);
         Spinner mySpinner = (Spinner) findViewById(R.id.size_spinner);
         Integer text =(Integer) mySpinner.getSelectedItem();
-        i.putExtra(dropDownData, text);
+        int size = (int)text;
+        i.putExtra(dropDownData, size);
         startActivity(i);
     }
 }
