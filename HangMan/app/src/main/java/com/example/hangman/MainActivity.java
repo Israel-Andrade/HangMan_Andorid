@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private dictionary dict;;
     private String word;
     private Set <String> lettersFound = new HashSet<String>();
+    private Set <String> lettersUsed = new HashSet<String>();
     private Queue<Integer> drawings = new LinkedList<Integer>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +60,17 @@ public class MainActivity extends AppCompatActivity {
         drawings.add((Integer)R.drawable.drawing_7);
         drawings.add((Integer)R.drawable.drawing_8);
         drawings.add((Integer)R.drawable.drawing_9);
+
         for(int i = 0; i < wordSize; i++)
         {
             buffer += "- ";
         }
+
         text.setText(buffer);
         Log.d("My word is: ", word);
 
         drawing.setImageResource(drawings.peek());
+        drawings.remove();
         Log.d("Buffer is ", buffer);
 
     }
@@ -74,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onKeyUp(int keyCode, KeyEvent event)
     {
-        Log.i("jfkrsj", "Value " + keyCode);
 
         int charValue = (keyCode - 29) + 97;
         if(charValue >= 65 && charValue <= 122)
@@ -90,15 +93,10 @@ public class MainActivity extends AppCompatActivity {
             for(int i = 0; i < word.length(); i++)
             {
 
-                Log.i("In Loop", "LOOP");
-
                 if(word.charAt(i) == character)
                 {
                     lettersFound.add(letter);
                     isFound = true;
-                    Log.i("Comparing", "Comparing " + word.charAt(i) + " with " + character);
-
-                   // buffer += value;
                 }
 
             }
@@ -109,18 +107,21 @@ public class MainActivity extends AppCompatActivity {
                 if(lettersFound.contains(characterFound))
                 {
                     buffer += word.charAt(i);
-                    Log.i("Found letter", "Letter found" + word.charAt(i));
                 }
                 else
                 {
                     buffer += "-   ";
-
                 }
+            }
+            if(!isFound && !lettersUsed.contains(letter))
+            {
+
+                drawing.setImageResource(drawings.peek());
+                drawings.remove();
             }
             if(!isFound)
             {
-                drawings.remove();
-                drawing.setImageResource(drawings.peek());
+                lettersUsed.add(letter);
             }
             text.setText(buffer);
 
