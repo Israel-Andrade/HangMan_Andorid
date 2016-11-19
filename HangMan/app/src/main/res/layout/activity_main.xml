@@ -46,6 +46,12 @@
         android:layout_alignParentBottom="false"
         android:id="@+id/lettersUsed" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="reset"
+        android:layout_below="@+id/lettersUsed"
+        android:onClick="reset"/>
 
 
 </RelativeLayout>
