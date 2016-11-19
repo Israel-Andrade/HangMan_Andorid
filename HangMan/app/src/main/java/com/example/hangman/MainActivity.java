@@ -14,6 +14,7 @@ import android.view.View;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InterruptedIOException;
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private dictionary dict;;
     private String word;
     private Set <String> lettersFound = new HashSet<String>();
+    private Queue<Integer> drawings = new LinkedList<Integer>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,18 @@ public class MainActivity extends AppCompatActivity {
         textUsed = (TextView) findViewById(R.id.wordText);
         word = dict.getRandomWord(wordSize);
         String buffer = "";
+
+
+        drawings.add((Integer)R.drawable.drawing_0);
+        drawings.add((Integer)R.drawable.drawing_1);
+        drawings.add((Integer)R.drawable.drawing_2);
+        drawings.add((Integer)R.drawable.drawing_3);
+        drawings.add((Integer)R.drawable.drawing_4);
+        drawings.add((Integer)R.drawable.drawing_5);
+        drawings.add((Integer)R.drawable.drawing_6);
+        drawings.add((Integer)R.drawable.drawing_7);
+        drawings.add((Integer)R.drawable.drawing_8);
+        drawings.add((Integer)R.drawable.drawing_9);
         for(int i = 0; i < wordSize; i++)
         {
             buffer += "- ";
@@ -52,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         text.setText(buffer);
         Log.d("My word is: ", word);
 
-        drawing.setImageResource(R.drawable.drawing_0);
+        drawing.setImageResource(drawings.peek());
         Log.d("Buffer is ", buffer);
 
     }
@@ -72,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             textUsed.setText(value);
 
             String buffer = "";
-
+            boolean isFound = false;
             for(int i = 0; i < word.length(); i++)
             {
 
@@ -81,20 +95,32 @@ public class MainActivity extends AppCompatActivity {
                 if(word.charAt(i) == character)
                 {
                     lettersFound.add(letter);
+                    isFound = true;
                     Log.i("Comparing", "Comparing " + word.charAt(i) + " with " + character);
 
-                    buffer += value;
+                   // buffer += value;
                 }
-                else if(lettersFound.contains(word.charAt(i)))
+
+            }
+            for(int i = 0; i < word.length(); i++)
+            {
+                String characterFound = String.valueOf(word.charAt(i));
+
+                if(lettersFound.contains(characterFound))
                 {
-                    buffer += value;
+                    buffer += word.charAt(i);
+                    Log.i("Found letter", "Letter found" + word.charAt(i));
                 }
                 else
                 {
-                    Log.i("Comparing", "Comparing " + word.charAt(i) + " with " + character);
-                    buffer += "-  ";
-                }
+                    buffer += "-   ";
 
+                }
+            }
+            if(!isFound)
+            {
+                drawings.remove();
+                drawing.setImageResource(drawings.peek());
             }
             text.setText(buffer);
 
