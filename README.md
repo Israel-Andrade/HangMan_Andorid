@@ -1,2 +1,2 @@
-# HangMan_Andorid
+# HangMan_Android
 Hangman Android Application
