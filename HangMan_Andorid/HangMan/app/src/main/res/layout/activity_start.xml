@@ -42,5 +42,6 @@
         android:paddingTop="30dp"
         android:paddingBottom="20dp"
         android:text="START"
-        android:onClick="START"/>
+        android:onClick="START"
+        android:id="@+id/start_button"/>
 </LinearLayout>
