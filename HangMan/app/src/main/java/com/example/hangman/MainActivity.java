@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,8 +18,7 @@ import java.util.*;
 public class MainActivity extends AppCompatActivity {
     ImageView drawing;
     TextView text, textUsed;
-    private dictionary dict;
-    private ArrayList<String> words;
+    private dictionary dict;;
     private String word;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,56 +43,55 @@ public class MainActivity extends AppCompatActivity {
         {
             buffer += "- ";
         }
-        //text.setText(word);
+        text.setText(buffer);
         Log.d("My word is: ", word);
 
-        /*
-        Queue<Integer> drawing_queue = new LinkedList<Integer>();
-        drawing_queue.add(R.drawable.drawing_0);
-        drawing_queue.add(R.drawable.drawing_1);
-        drawing_queue.add(R.drawable.drawing_2);
-        drawing_queue.add(R.drawable.drawing_3);
-        drawing_queue.add(R.drawable.drawing_4);
-        drawing_queue.add(R.drawable.drawing_5);
-        drawing_queue.add(R.drawable.drawing_6);
-        drawing_queue.add(R.drawable.drawing_7);
-        drawing_queue.add(R.drawable.drawing_8);
-        drawing_queue.add(R.drawable.drawing_9);
-        Integer number = drawing_queue.peek();
-        Log.d("This", "This " + number);
-        Log.d("This", "This " + R.drawable.drawing_0);
-        */
         drawing.setImageResource(R.drawable.drawing_0);
+        Log.d("Buffer is ", buffer);
 
     }
 
-    @Override
+@Override
+
     public boolean onKeyUp(int keyCode, KeyEvent event)
     {
-        String buffer = " ";
         Log.i("jfkrsj", "Value " + keyCode);
+
         int charValue = (keyCode - 29) + 97;
         if(charValue >= 65 && charValue <= 122)
         {
-            textUsed.setText(" ");
             char character = (char) charValue;
             Log.i("Value", "Character " + character);
             String value = String.valueOf(character);
+            value += " ";
             textUsed.setText(value);
+
+            String buffer = "";// "----------------------";
+            /*
             for(int i = 0; i < word.length(); i++)
             {
+
+                Log.i("In Loop", "LOOP");
+
                 if(word.charAt(i) == character)
                 {
-                    buffer += character;
+                    Log.i("Comparing", "Comparing " + word.charAt(i) + " with " + character);
+
+                    buffer.concat(value);
                 }
                 else
                 {
-                    buffer += "- ";
+                    Log.i("Comparing", "COmparing" + word.charAt(i) + " with " + character);
+                    buffer.concat("-  ");
                 }
+
+                buffer.concat(value);
+
+                text.setText(buffer);
             }
-            Log.d("Wornfdfkjnafnfakjnjanf", "Character " + character);
-            text.setText(buffer);
+            */
         }
+
         else
         {
             return super.onKeyUp(keyCode, event);
