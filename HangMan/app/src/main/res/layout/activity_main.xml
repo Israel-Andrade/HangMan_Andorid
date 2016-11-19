@@ -12,33 +12,34 @@
     tools:context="com.example.hangman.MainActivity">
 
     <ImageView
+        android:padding="8dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         app:srcCompat="@drawable/drawing_9"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/drawing" />
 
     <TextView
+        android:padding="8dp"
+        android:textSize="15dp"
         android:text="_  _  _  _  _  _  _  _  _  _  _  _  _  _  _ "
-        android:layout_width="wrap_content"
+        android:layout_below="@+id/drawing"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/wordText"
-        android:gravity="center"
-        android:layout_marginBottom="81dp"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:padding="8dp"
+        android:textSize="15dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:layout_below="@+id/wordText"
         android:text=""
-        android:ems="10"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
+        android:layout_alignParentBottom="false"
         android:id="@+id/lettersUsed" />
 
 </RelativeLayout>
