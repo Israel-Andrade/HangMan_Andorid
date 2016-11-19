@@ -23,7 +23,7 @@
         android:text="_  _  _  _  _  _  _  _  _  _  _  _  _  _  _ "
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:id="@+id/textView2"
+        android:id="@+id/wordText"
         android:layout_marginBottom="25dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
